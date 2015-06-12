@@ -230,6 +230,7 @@ class Chef
           knife_config: config,
           ui: ui
         )
+        @host_descriptor = {}
       end
 
       # The default bootstrap template to use to bootstrap a server This is a public API hook
@@ -250,12 +251,15 @@ class Chef
       end
 
       def host_descriptor
-        return @host_descriptor if @host_descriptor
-        parts = Array(@name_args).first.split('@')
-        @host_descriptor = {
-          :host => parts.pop,
-          :user => parts.pop
-        }
+        unless @name_args.nil?
+          parts = Array(@name_args).first.split('@')
+          @host_descriptor = {
+            :host => parts.pop,
+            :user => parts.pop
+          }
+        end
+
+        @host_descriptor
       end
 
       def bootstrap_template
