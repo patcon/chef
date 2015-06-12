@@ -42,7 +42,7 @@ class Chef
         Chef::Knife::Ssh.load_deps
       end
 
-      banner "knife bootstrap FQDN (options)"
+      banner "knife bootstrap [SSH_USER@]FQDN (options)"
 
       option :ssh_user,
         :short => "-x USERNAME",
@@ -246,7 +246,16 @@ class Chef
       #
       # @return [String] The DNS or IP that bootstrap will connect to
       def server_name
-        Array(@name_args).first
+        host_descriptor[:host]
+      end
+
+      def host_descriptor
+        return @host_descriptor if @host_descriptor
+        parts = Array(@name_args).first.split('@')
+        @host_descriptor = {
+          :host => parts.pop,
+          :user => parts.pop
+        }
       end
 
       def bootstrap_template
@@ -341,7 +350,7 @@ class Chef
           if config[:ssh_password]
             raise
           else
-            ui.info("Failed to authenticate #{config[:ssh_user]} - trying password auth")
+            ui.info("Failed to authenticate #{knife_ssh.config[:ssh_user]} - trying password auth")
             knife_ssh_with_password_auth.run
           end
         end
@@ -361,7 +370,7 @@ class Chef
         ssh = Chef::Knife::Ssh.new
         ssh.ui = ui
         ssh.name_args = [ server_name, ssh_command ]
-        ssh.config[:ssh_user] = config[:ssh_user]
+        ssh.config[:ssh_user] = host_descriptor[:user] || config[:ssh_user]
         ssh.config[:ssh_password] = config[:ssh_password]
         ssh.config[:ssh_port] = config[:ssh_port]
         ssh.config[:ssh_gateway] = config[:ssh_gateway]
