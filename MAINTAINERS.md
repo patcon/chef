@@ -99,6 +99,10 @@ The specific components of Chef related to a given platform - including (but not
 
 ## Solaris
 
+### Lieutenant
+
+* [Thom May](https://github.com/thommay)
+
 ### Maintainers
 
 * [Lamont Granquist](https://github.com/lamont-granquist)
@@ -119,6 +123,34 @@ The specific components of Chef related to a given platform - including (but not
 
 * [Tyler Ball](https://github.com/tyler-ball)
 
+## Debian
+
+### Lieutenant
+
+* [Thom May](https://github.com/thommay)
+
+### Maintainers
+
+* [Lamont Granquist](https://github.com/lamont-granquist)
+
+## Fedora
+
+### Maintainers
+
+* [Lamont Granquist](https://github.com/lamont-granquist)
+
+## openSUSE
+
+### Maintainers
+
+* [Lamont Granquist](https://github.com/lamont-granquist)
+
+## SUSE Enterprise Linux Server
+
+### Maintainers
+
+* [Lamont Granquist](https://github.com/lamont-granquist)
+
 ## FreeBSD
 
 ### Lieutenant
@@ -129,4 +161,10 @@ The specific components of Chef related to a given platform - including (but not
 
 * [Cory Stephenson](https://github.com/Aevin1387)
 * [David Aronsohn](https://github.com/tbunnyman)
+
+## Gentoo
+
+### Maintainers
+
+* [Lamont Granquist](https://github.com/lamont-granquist)
 
